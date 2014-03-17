@@ -15,7 +15,8 @@ Header set Access-Control-Allow-Credentials true
 </IfModule>
 </FilesMatch>
 
-# Uncomment the following five rows and comment all above rows for testing if above fails
+# If above fails, uncomment the following five rows and comment all above rows for testing
+# If this and/or above fails, likely the configuration for a proxy (e.g., Varnish) in front of Apache is stripping headers
 #<FilesMatch "\.(ttf|otf|eot|woff|svg|font.css)$">
 #<IfModule mod_headers.c>
 #Header set Access-Control-Allow-Origin "*"
