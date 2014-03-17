@@ -1,0 +1,24 @@
+# BEGIN deliver fonts to subdomains and cross domains for same origin strict browsers (Firefox and Internet Explorer)
+<FilesMatch "\.(ttf|otf|eot|woff|svg|font.css)$">
+<IfModule mod_headers.c>
+
+# Code for subdomains-replace "domain" and "tld"
+SetEnvIf Origin "^(.*\.domain\.tld)$" ORIGIN_SUB_DOMAIN=$1
+Header add Access-Control-Allow-Origin "%{ORIGIN_SUB_DOMAIN}e" env=ORIGIN_SUB_DOMAIN
+
+# Code for cross domains-replace "domain.tld"-add "|domain.tld" within (domain.tld) for each additional domain
+SetEnvIf Origin "http(s)?://(www\.)?(domain.tld)$" AccessControlAllowOrigin=$0$1
+Header add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+
+# Allow for credentials
+Header set Access-Control-Allow-Credentials true
+</IfModule>
+</FilesMatch>
+
+# Uncomment the following five rows and comment all above rows for testing if above fails
+#<FilesMatch "\.(ttf|otf|eot|woff|svg|font.css)$">
+#<IfModule mod_headers.c>
+#Header set Access-Control-Allow-Origin "*"
+#</IfModule>
+#</FilesMatch>
+# END deliver fonts to subdomains and cross domains
