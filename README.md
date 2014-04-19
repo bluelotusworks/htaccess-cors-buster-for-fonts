@@ -11,4 +11,4 @@ https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS#Access-Control
 
 http://www.w3.org/TR/cors/
 
-Want to contribute? Pull or request to collaborate.
+Want to contribute? Request to pull or collaborate.
